@@ -1,0 +1,42 @@
+<?php
+
+function smartdocs_service_services_resources() {
+    watchdog( 'smartdocs', "Entering the service.");
+
+    return array(
+	'smartdocs' => array(
+	    'actions' => array(
+		'render' => array(
+		    'help' => 'Render SmartDocs page',
+'file' => array(
+            'type' => 'inc',
+                        'module' => 'smartdocs_service',
+                                    'name' => 'smartdocs_service',
+                                              ), 
+                                              		    'callback' => '_smartdocs_service_swagger_import',
+		    'access callback' => '_smartdocs_access',
+		    'access arguments' => array('access content observer api'),
+		    'access arguments append' => FALSE,
+		    'args' => array(
+			array(
+			    'name' => 'fn',
+			    'type' => 'string',
+			    'description' => 'Page to render',
+			    'source' => array( 'param' => 'name' ),
+			    'optional' => TRUE,
+			    'default' => '<page>'
+			),
+		    ),
+	    ),
+	    ),
+	)
+    );
+
+}
+
+function _smartdocs_access($op, $args){
+    return TRUE;
+}
+
+
+?>

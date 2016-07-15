@@ -1,0 +1,8 @@
+name = Smartdocs Service
+description = Exposing useful operations with SmartDocs documents.
+package = Smartdocs - services
+dependencies[] = services
+dependencies[] = smartdocs
+files[] = smartdocs_service.inc
+files[] = smartdocs_service.module
+core = 7.x
