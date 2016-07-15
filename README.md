@@ -39,11 +39,58 @@ http://dev-payeezy.devportal.apigee.com/payeezy-api/apis/post/transactions-11
 - more options for advanced branding customization; 
 http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 
-## Misc
+---
 
-Default Values fix: 
+## Tasks
+
+### drupal services-related functionality
+[ ] post action/drupal services module
+[ ] form file field]\
+[ ] form actions
+
+### programmatic execution of click sequence
+[ ] create model\
+[ ] import swagger file\
+[ ] render and publish
+[ ] REFACTOR: into model/controller, functions
+
+### drupal module distribution
+[ ] _install hook. do we need it?\
+[ ] wrap it up as an drupal module\
+
+## Quick setup guide
+
+1. Install and enable Services drupal module and REST server\
+drush dl services\
+drush en services\
+drush en rest_server\
+
+1. copy smartdocs_service folder into /var/www/html/sites/all/modules
+1. Refresh and switch on SmartDocs service module.
+
+1. Configure endpoint
+    * Structure/Services
+        1. Edit tab. Add service \
+            Machine-readable name of the endpoint: devportal
+            Server: REST
+            Path to endpoint: devportal
+        1. Resources. Select Smartdocs/Actions/render
+1. Run request \
+http://192.168.56.102/devportal/smartdocs/render?name=yyy
+1. Look at the Report/Recent Log Messages for the watchdog() output
+1. Look at the /var/log/httpd for server and devportal errors (including php syntax errors)
+
+NOTE: make sure your Endpoint Authenticated User can connect (Configuration/DevPortal)
+
+---
+## Links
+
+### Default Values fix: 
 https://community.apigee.com/articles/26982/smartdocs-default-values-from-request-body-schema.html
 
-
+### DC's trilogy on Drupal services module operations and security/authentication
+https://www.dinochiesa.net/?p=1297\
+https://www.dinochiesa.net/?p=1331\
+https://www.dinochiesa.net/?p=1345\
 
 
