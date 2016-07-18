@@ -40,19 +40,22 @@ watchdog( 'YL', "Entering Import Action. Params: " . $_FILES['files']['tmp_name'
 		'uri' => services_resource_uri(array('file', $file->fid)),
 		);
 	    $file_objs[] = $file;
+
+ob_start();
+var_dump($file);
+$result = ob_get_clean();
+
+watchdog( 'YL', "File: " . $result);
+
+file_move( $file, "public://tmp", FILE_EXISTS_REPLACE );
+
+
         }else{
     	    return services_error(t('An unknown error occured'), 500);
     	}
     	
-//YL
-watchdog( 'YL', file_get_contents($_FILES['files']['tmp_name'][$key]));
     	
     }
-        
-
-//	if (!$file = file_save_upload($key, $va
-    
-    
     
 
     // import_swagger_yaml_into_model();
