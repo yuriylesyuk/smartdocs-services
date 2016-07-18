@@ -174,12 +174,16 @@ watchdog( 'YL10: term: ', "term: " . $term->name );
             $term = entity_metadata_wrapper('taxonomy_term', $term);
             // Store last modified date. (We use created time, because when a
             // new model is created the modifiedTime is 0.)
-watchdog( 'YL10: term: ', "term: " . $term->name );
-            $term->field_api_model_modified_at = $revision->getCreatedTime();
-watchdog( 'YL10: term: ', "term: " . $term->name );
-            $term->field_api_proxy_name = $proxy_name;
-watchdog( 'YL10: term: ', "term: " . $term->name );
-            $term->field_swagger_documentation = array('fid' => $swagger_file->fid, 'display' => 1);
+
+//
+// YL: prudentials??
+// watchdog( 'YL10: term: ', "term: " . $term->name );
+//            $term->field_api_model_modified_at = $revision->getCreatedTime();
+//
+//watchdog( 'YL10: term: ', "term: " . $term->name );
+//            $term->field_api_proxy_name = $proxy_name;
+//watchdog( 'YL10: term: ', "term: " . $term->name );
+//            $term->field_swagger_documentation = array('fid' => $swagger_file->fid, 'display' => 1);
 watchdog( 'YL10: term: ', "term: " . $term->name );
             field_attach_update('taxonomy_term', $term->value());
 
