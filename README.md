@@ -44,15 +44,16 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 ## Tasks
 
 ### drupal services-related functionality
-[ ] post action/drupal services module
-[ ] form file field]\
-[ ] form actions
+[x] post action/drupal services module
+[x] form file field]\
+[x] form actions
 
 ### programmatic execution of click sequence
 [ ] create model\
-[ ] import swagger file\
-[ ] render and publish
+[x] import swagger file\
+[x] render and publish
 [ ] REFACTOR: into model/controller, functions
+[ ] REFACTOR: pipe file object from import to render function
 
 ### drupal module distribution
 [ ] _install hook. do we need it?\
