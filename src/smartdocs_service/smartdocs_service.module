@@ -8,12 +8,12 @@ function smartdocs_service_services_resources() {
 	    'actions' => array(
 		'render' => array(
 		    'help' => 'Render SmartDocs page',
-'file' => array(
-            'type' => 'inc',
-                        'module' => 'smartdocs_service',
-                                    'name' => 'smartdocs_service',
-                                              ), 
-                                              		    'callback' => '_smartdocs_service_swagger_import',
+		    'file' => array(
+		            'type' => 'inc',
+            	            'module' => 'smartdocs_service',
+                            'name' => 'smartdocs_service',
+                          ), 
+                    'callback' => '_smartdocs_service_swagger_render',
 		    'access callback' => '_smartdocs_access',
 		    'access arguments' => array('access content observer api'),
 		    'access arguments append' => FALSE,
@@ -27,7 +27,36 @@ function smartdocs_service_services_resources() {
 			    'default' => '<page>'
 			),
 		    ),
-	    ),
+		),
+		'import' => array(
+		    'help' => 'Import Swagger file. POST mltipart/form-data',
+		    'file' => array(
+	                'type' => 'inc',
+        	        'module' => 'smartdocs_service',
+                        'name' => 'smartdocs_service',
+            	    ), 
+                    'callback' => '_smartdocs_service_swagger_import',
+		    'access callback' => '_smartdocs_access',
+		    'access arguments' => array('update'),
+		    'access arguments append' => TRUE,
+		    'args' => array(
+			array(
+			    'name' => 'model',
+			    'type' => 'string',
+			    'description' => 'Model name',
+			    'source' => array( 'data' => 'model' ),
+			    'optional' => TRUE,
+			    'default' => '<page>'
+			),
+			array(
+			    'name' => 'field_name',
+			    'optional' => FALSE,
+			    'source' => array('data' => 'field_name'),
+			    'description' => 'The file parameters',
+			    'type' => 'string',
+			),
+		    ),
+		),
 	    ),
 	)
     );
