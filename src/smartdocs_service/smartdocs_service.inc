@@ -47,8 +47,13 @@ $result = ob_get_clean();
 
 watchdog( 'YL', "File: " . $result);
 
-file_move( $file, "public://tmp", FILE_EXISTS_REPLACE );
 
+    file_move( $file, "public://" . $file->filename, FILE_EXISTS_REPLACE );
+    
+    //
+    // process the file
+    //
+    import_swagger_yaml_into_model( $model, "public://". $file->filename );
 
         }else{
     	    return services_error(t('An unknown error occured'), 500);
@@ -56,18 +61,13 @@ file_move( $file, "public://tmp", FILE_EXISTS_REPLACE );
     	
     	
     }
-    
-
-    // import_swagger_yaml_into_model();
-    return 'hi';
-
 }
 
 function _smartdocs_service_swagger_render( $name ) {
     watchdog( 'YL', "Entering render service.");
 
 
-    import_swagger_yaml_into_model();
+//    import_swagger_yaml_into_model();
     return 'hi';
 
 }
@@ -82,12 +82,10 @@ function _smartdocs_service_swagger_render( $name ) {
  *
  * @throws \Exception
  */
-function import_swagger_yaml_into_model() {
+function import_swagger_yaml_into_model($model_name, $swagger_file) {
 
 watchdog( 'YL: import swagger yaml: ', "Entering render service.");
 
-
-  $model_name = "model6";
   $config = devconnect_default_org_config();
   $model = new Model($config);
   $form_state = array();
@@ -97,7 +95,7 @@ watchdog( 'YL2: import swagger yaml: ', "Entering render service.");
     'model_name' => $model_name,
     'type' => 'swagger_yaml',
     'upload_type' => 'url',
-    'url' => file_create_url("/tmp/swagger.yaml"),
+    'url' => file_create_url($swagger_file),
   );
 
   // DEBUG only option for local development environments.
