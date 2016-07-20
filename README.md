@@ -56,10 +56,15 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 [ ] REFACTOR: pipe file object from import to render function
 
 ### drupal module distribution
-[ ] _install hook. do we need it?\
-[ ] wrap it up as an drupal module\
+[x] add 'import swagger specification' permission \
+[ ] _install hook. do we need it? \
+[x] wrap it up as an drupal module 
 
 ## Quick setup guide
+[ ] User access documentation
+
+[x] Test against pantheon devportal instance
+
 
 1. Install and enable Services drupal module and REST server\
 drush dl services\
