@@ -14,7 +14,7 @@ function smartdocs_service_services_resources() {
                             'name' => 'smartdocs_service',
                           ), 
                     'callback' => '_smartdocs_service_swagger_render',
-		    'access callback' => '_smartdocs_access',
+		    'access callback' => 'user_access',
 		    'access arguments' => array('access content observer api'),
 		    'access arguments append' => FALSE,
 		    'args' => array(
@@ -36,9 +36,8 @@ function smartdocs_service_services_resources() {
                         'name' => 'smartdocs_service',
             	    ), 
                     'callback' => '_smartdocs_service_swagger_import',
-		    'access callback' => '_smartdocs_access',
-		    'access arguments' => array('update'),
-		    'access arguments append' => TRUE,
+		    'access callback' => 'user_access',
+		    'access arguments' => array('import swagger specification'),
 		    'args' => array(
 			array(
 			    'name' => 'model',
@@ -61,6 +60,14 @@ function smartdocs_service_services_resources() {
 	)
     );
 
+}
+
+function smartdocs_service_permission() {
+    return array(
+	'import swagger specification' => array(
+	    'title' => t('Import Swagger specification')
+	    )
+	);
 }
 
 function _smartdocs_access($op, $args){
