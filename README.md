@@ -44,26 +44,27 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 ## Tasks
 
 ### drupal services-related functionality
-[x] post action/drupal services module
-[x] form file field]\
-[x] form actions
+[x] post action/drupal services module  
+[x] form file field  
+[x] form actions  
 
 ### programmatic execution of click sequence
-[ ] create model\
-[x] import swagger file\
-[x] render and publish
-[ ] REFACTOR: into model/controller, functions
-[ ] REFACTOR: pipe file object from import to render function
+[ ] create model  
+[x] import swagger file  
+[x] render and publish  
+[x] REFACTOR: into model/controller, functions  
+[ ] REFACTOR: pipe file object from import to render function  
 
 ### drupal module distribution
-[x] add 'import swagger specification' permission \
-[ ] _install hook. do we need it? \
-[x] wrap it up as an drupal module 
+[x] add 'import swagger specification' permission  
+[ ] _install hook. do we need it?  
+[x] wrap it up as an drupal module  
 
 ## Quick setup guide
-[ ] User access documentation
-
-[x] Test against pantheon devportal instance
+[x] Developer quick start doc  
+[ ] User access documentation  
+  
+[x] Test against pantheon devportal instance  
 
 
 1. Install and enable Services drupal module and REST server\
