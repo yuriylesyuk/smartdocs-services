@@ -32,7 +32,8 @@ Amongst them couple of minor nuisances:
     See here on how to [patch it](https://community.apigee.com/articles/26982/smartdocs-default-values-from-request-body-schema.html).
 
 
-- Current DevPortal/SmartDoc solution is powerful and flexible.  
+
+Current DevPortal/SmartDoc solution is powerful and flexible.  
     
 The principle and components are right and all the correct moving parts are in place. It's just 
 there is a learning curve to to be able to harness this power.
