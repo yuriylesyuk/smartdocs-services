@@ -9,17 +9,17 @@ tutorial that explans how to
 
 
 # smartdocs-services Overview and Positioning
-The REST API services module for key functionality to enable CI/CD for swagger-devportal workflow.
+The REST API services module for key functionality to enable CI/CD for OpenAPI-based DevPortal workflow.
 
 The project is a distributed hackaton amongst YL, DC, and GK to come up with a PoC 
-for swagger-based CI set of processes. 
+for OpenAPI-based CI set of processes. 
 
 Right now we are dealing with a mix of problems that deny smooth out-of-the-box 
 experince.
 
 Amongst them couple of minor nuisances:
 
-- bugs in swagger import process (default number type values is not passed
+- bugs in OpenAPI (a.k.a. swagger) import process (default number type values is not passed
  to a smartdocs json model, Edge java code)
 
     This problem can be alleviated using Management API to access and manipulate SmartDocs model.json.
@@ -48,7 +48,7 @@ Deliverables:
 * on-site update; (ie, 'curl'-based script)
 * expose render/publish interface for smardocs via drupal rest module
 * new advanced to out-of-the-box sub-theme better fitted for real life
-* swagger-driven CI workflow
+* OpenAPI-driven CI workflow
 
 Features of an alternative Apigee out-of-the-box Theme:
 - api page: amadeus left side https://sandbox.amadeus.com/travel-innovation-sandbox/apis/get/location/%7Bcode%7D
@@ -76,7 +76,7 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 [ ] REFACTOR: pipe file object from import to render function  
 
 ### drupal module distribution
-[x] add 'import swagger specification' permission  
+[x] add 'import OpenAPI specification' permission  
 [ ] _install hook. do we need it?  
 [x] wrap it up as an drupal module  
 
