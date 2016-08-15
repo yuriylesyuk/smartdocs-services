@@ -1,6 +1,6 @@
 # How to install and use smartdocs-services module
 
-The [SmartDocs Install and Usage Page](docs/smartdocs-services-step-by-step.md) page provides 
+The [SmartDocs Install and Usage Page](docs/smartdocs-services-step-by-steps.md) page provides 
 tutorial that explans how to 
 * install the module;
 * use it from Postman;
