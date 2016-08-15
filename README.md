@@ -1,4 +1,14 @@
-# smartdocs-services
+# How to install and use smartdocs-services module
+
+The [SmartDocs Install and Usage Page](docs/smartdocs-services-step-by-step.md) page provides 
+tutorial that explans how to 
+* install the module;
+* use it from Postman;
+* curl commands to use it in scripts.
+
+
+
+# smartdocs-services Overview and Positioning
 The REST API services module for key functionality to enable CI/CD for swagger-devportal workflow.
 
 The project is a distributed hackaton amongst YL, DC, and GK to come up with a PoC 
@@ -62,7 +72,7 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 
 ## Quick setup guide
 [x] Developer quick start doc  
-[ ] User access documentation  
+[x] User access documentation  
   
 [x] Test against pantheon devportal instance  
 

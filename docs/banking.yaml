@@ -1,0 +1,168 @@
+swagger: "2.0"
+info:
+    version: "0.0.1"
+    title: Swagger Types Application
+host: playground.apistudio.io
+basePath: /try/e267c6e3-ef2e-4933-a8b6-bfa87e3cbaf8
+schemes:
+    - http
+    - https
+consumes:
+    - application/json
+produces:
+    - application/json
+x-a127-config: {}
+x-a127-services: {}
+
+paths:
+    /fundtransfers:
+        x-swagger-router-controller: transaction
+        x-a127-apply: {}
+        post:
+            description: Returns 'Hello' to the caller
+            # used as the method name of the controller
+            operationId: transaction
+            parameters:
+                - name: Timestamp
+                  in: query
+                  description: please enter the time stamp
+                  required: true
+                  type: string
+                  default: "2016-05-10T08:23:57+00:00"
+                - name: UniqueRefNo
+                  in: query
+                  description: please enter the unique ref number
+                  required: true
+                  type: string
+                  pattern: "[0-9]"
+                  minLength: 4
+                  maxLength: 10
+                - name: OrgId
+                  in: query
+                  description: please enter the Organization Id
+                  required: true
+                  type: string
+                  default: KSA
+                - in: body
+                  name: body
+                  description: The name of the person to whom to say hello
+                  required: false
+                  schema:
+                    # a pointer to a definition
+                    $ref: "#/definitions/fundschema"
+            responses:
+                "200":
+                    description: Success
+                    schema:
+                        $ref: "#/definitions/HelloWorldResponse"
+                "400":
+                    description: response not availabe
+                    schema:
+                        $ref: "#/definitions/ErrorResponse1"
+                "402":
+                    description: response not availabe
+                    schema:
+                        $ref: "#/definitions/ErrorResponse2"
+                # responses may fall through to errors
+                default:
+                    description: Error
+                    schema:
+                        $ref: "#/definitions/ErrorResponse"
+
+# complex objects have schema definitions
+definitions:
+    HelloWorldResponse:
+        type: object
+        properties:
+            API000011: 
+                type: string
+                description: internal error
+            API000012: 
+                type: string
+                description: invalid entry
+            API000011: 
+                type: string
+                description: invalid date
+    ErrorResponse1:
+        type: object
+        properties:
+            ApplicationName:
+                type: string
+                description: OpenAPI
+            Status:
+                type: string
+                description: Success
+            ErrorCode1:
+                type: string
+                description: OAP-00000
+            ErrorDescription12:
+                type: string
+                description: Missing query string parameter	Parameter missing bad request
+    ErrorResponse:
+        type: string
+    ErrorResponse2:
+        required:
+            - error
+        properties:
+            error:
+                type: object
+                required:
+                    - httpeStatuscode
+                    - datetime
+                properties:
+                    ap001212:
+                        type: string
+                        description: the newly addesd
+                    ap001132:
+                        type: string
+                        description: the newly addesd2
+    FundTransfer:
+        type: object
+        properties:
+            refNumber:
+                type: integer
+                default: 987651234
+            amount:
+                type: number
+                default: 123.45
+            cleared:
+                type: boolean
+                default: true
+            comment:
+                type: string
+                default: "Transaction pre-authorized."
+            debit:
+                $ref: "#/definitions/Debit"
+            credit:
+                $ref: "#/definitions/Credit"
+    Debit:
+        type: object
+        required:
+            - debitRefNo
+        properties:
+          debitRefNo:
+            type: string
+            pattern: "[a-z]"
+            default: azsrtv2
+    Credit:
+        type: object
+        required:
+            - creditRefNo
+        properties:
+            creditRefNo:
+                type: string
+                minLength: 4
+                maxLength: 8
+                pattern: "[0-9]"
+    fundschema:
+        type: object
+        required:
+            - batchTransactionId
+        properties:
+            batchTransactionId:
+                type: string
+                default: "44"
+                description: please enter the value
+            fundTransfer:
+                 $ref: "#/definitions/FundTransfer"
+         
