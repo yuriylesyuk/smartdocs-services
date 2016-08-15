@@ -17,15 +17,25 @@ for swagger-based CI set of processes.
 Right now we are dealing with a mix of problems that deny smooth out-of-the-box 
 experince.
 
-Amongst them:
+Amongst them couple of minor nuisances:
+
 - bugs in swagger import process (default number type values is not passed
  to a smartdocs json model, Edge java code)
+
+    This problem can be alleviated using Management API to access and manipulate SmartDocs model.json.
+
+    For additonal details, see http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis.
 
 - bugs in SmartDocs rendered theme (model.js; default values are not rendered
  in a sample datagram, /v6/model.js in drupal theme)
 
-- Current DevPortal/SmartDoc solution is flowed and neglected. However, 
-the principle and components are right and all the correct moving parts are in place.
+    See here on how to [patch it](https://community.apigee.com/articles/26982/smartdocs-default-values-from-request-body-schema.html).
+
+
+- Current DevPortal/SmartDoc solution is powerful and flexible.  
+    
+The principle and components are right and all the correct moving parts are in place. It's just 
+there is a learning curve to to be able to harness this power.
 
 As the ultimate goal is a Look & Feel, we can augment current process 
 to overcome its implementation limitations.
