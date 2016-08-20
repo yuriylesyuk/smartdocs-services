@@ -68,6 +68,7 @@ http://docs.apigee.com/developer-services/content/using-smartdocs-document-apis
 [x] post action/drupal services module  
 [x] form file field  
 [x] form actions  
+[x] support of swagger yaml and json file formats
 
 ### programmatic execution of click sequence
 [ ] create model  

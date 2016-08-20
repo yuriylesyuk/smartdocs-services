@@ -163,9 +163,9 @@ As a DevPortal side administrator,
 
     "token": "4zWJagz4YbYKfXXbfXnvnXlHH4v5Nh5GhL6Ce_eKeXw"
 
-### Execute import Request of the SmartDocs Service module
+### Execute import Request of the SmartDocs Service module for a Swagger yaml Specification
 
-1. In the Postman, create a new request for importing swagger file. 
+1. In the Postman, create a new request for importing swagger yaml file. 
 
     Use [banking.yaml](banking.yaml) file from the docs folder of the smartdocs-service project.
 
@@ -181,13 +181,13 @@ As a DevPortal side administrator,
 
 		files[swagger]	Type: File	Value: banking.yaml 
 
-		field_name	Type: Text	Value: field
+		type	Type: Text	Value: yaml
 
 	Header: X-CSRF-Token
 
 	Header Value: 4zWJagz4YbYKfXXbfXnvnXlHH4v5Nh5GhL6Ce_eKeXw
 
-    ![image alt text](image_11.png)
+    ![image alt text](banking-yaml-import-postman.png)
 
     ![image alt text](image_12.png)
 
@@ -218,6 +218,48 @@ As a DevPortal side administrator,
     The rendered SmartDocs will be displayed.
 
     ![image alt text](image_16.png)
+
+## Importing, Rendering, and Publishing swagger json specification
+
+1. Create model petstore.
+
+1. In the Postman, create a new request for importing swagger json file. 
+
+    Use [petstore.json](petstore.json) file from the docs folder of the smartdocs-service project.
+
+	    Verb: POST
+
+	    URL: http://dev-<site>.devportal.apigee.com/devportal/smartdocs/import
+
+	    Body: form-data
+
+	Body parameters
+
+		model	Type: Text 	Value: banking
+
+		files[swagger]	Type: File	Value: petstore.json 
+
+		type	Type: Text	Value: json
+
+	Header: X-CSRF-Token
+
+	Header Value: 4zWJagz4YbYKfXXbfXnvnXlHH4v5Nh5GhL6Ce_eKeXw
+
+    ![image alt text](petstore-json-import-postman.png)
+
+1. Execute the request.
+
+    The result should be Status: 200
+
+    Three new nodes will be rendered and published on petstore model.
+
+    ![image alt text](petstore-content-smartdocs.png)
+
+    The #1st revision of the petstore now contains three method definitions.
+
+    ![image alt text](petstore-model-methods.png)
+
+
 
 ## Curl call to the SmartDocs Services Module
 
