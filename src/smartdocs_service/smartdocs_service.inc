@@ -4,14 +4,51 @@ use Apigee\ManagementAPI\APIProxy;
 use Apigee\SmartDocs\Model;
 use Apigee\SmartDocs\Revision;
 require_once drupal_get_path('module', 'smartdocs') . "/smartdocs.admin.inc";
+require_once drupal_get_path('module', 'smartdocs') . "/batch/smartdocs.render.inc";
 
-function _smartdocs_service_swagger_import( $model, $field_name ) {
+
+
+function _smartdocs_service_swagger_render($model_uuid, $revision_number) {
+    
+watchdog( 'YL', "Entering render service.");
+
+    $config = devconnect_default_org_config();
+  
+    $model = new Model($config);
+    $model->load($model_uuid);
+  
+    $revision = new Revision($config, $model_uuid);
+    $revision->load($revision_number);
+  
+    $method_uuids = array();
+    foreach ($revision->getResources() as $resource) {
+	foreach ($resource->getMethods() as $method) {
+            $method_uuids[$method->getUuid()] = $method->getUuid();
+	}
+    }
+
+
+    $options = array('publish' => TRUE);
+//    $batch = smartdocs_render($model, $revision, $method_uuids, $options);
+    $batch =  smartdocs_render($model, $revision, $method_uuids, $options);
+
+//return $batch;
+    batch_set($batch);
+//		$batch =& batch_get();
+//              $batch['progressive'] = FALSE;
+//watchdog("YL>R","h"); 
+    batch_process();
+//drush_backend_batch_process();
+}
+
+
+function _smartdocs_service_swagger_import( $model, $type ) {
 watchdog( 'YL', "Entering Import Action. model: " . $model );
-watchdog( 'YL', "Entering Import Action. field_name: " . $field_name );
+watchdog( 'YL', "Entering Import Action. type: " . $type );
 
     $file_upload_count = count($_FILES['files']['name']);
 
-    $validators = array( 'file_validate_extensions' => array('yaml'));
+    $validators = array( 'file_validate_extensions' => array($type));
     
 watchdog( 'YL', "Entering Import Action. count: " . $file_upload_count );
     $destination = sys_get_temp_dir();
@@ -53,7 +90,7 @@ watchdog( 'YL', "File: " . $result);
     //
     // process the file
     //
-    import_swagger_yaml_into_model( $model, "public://". $file->filename );
+    import_swagger_into_model( $model, "public://". $file->filename, $type );
 
         }else{
     	    return services_error(t('An unknown error occured'), 500);
@@ -63,26 +100,20 @@ watchdog( 'YL', "File: " . $result);
     }
 }
 
-function _smartdocs_service_swagger_render( $name ) {
-    watchdog( 'YL', "Entering render service.");
-
-
-//    import_swagger_yaml_into_model();
-    return 'hi';
-
-}
-
 /**
  * Creates a new model revision from Swagger file and render&publish nodes.
  *
  * @param string $proxy_name
  *   Name of the model.
  * @param \stdClass $swagger_file
+
+ * @parem string $swagger_type swagger_yaml or swagger_json
+    
  *   File object which refers to a valid Swagger json file.
  *
  * @throws \Exception
  */
-function import_swagger_yaml_into_model($model_name, $swagger_file) {
+function import_swagger_into_model($model_name, $swagger_file, $swagger_type) {
 
 watchdog( 'YL: import swagger yaml: ', "Entering render service.");
 
@@ -93,7 +124,7 @@ watchdog( 'YL2: import swagger yaml: ', "Entering render service.");
 
   $form_state['values'] = array(
     'model_name' => $model_name,
-    'type' => 'swagger_yaml',
+    'type' => 'swagger_' . $swagger_type, 
     'upload_type' => 'url',
     'url' => file_create_url($swagger_file),
   );

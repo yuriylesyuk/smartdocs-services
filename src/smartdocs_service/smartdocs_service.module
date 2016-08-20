@@ -15,16 +15,22 @@ function smartdocs_service_services_resources() {
                           ), 
                     'callback' => '_smartdocs_service_swagger_render',
 		    'access callback' => 'user_access',
-		    'access arguments' => array('access content observer api'),
+		    'access arguments' => array('render and publish model'),
 		    'access arguments append' => FALSE,
 		    'args' => array(
 			array(
-			    'name' => 'fn',
+			    'name' => 'modeluuid',
 			    'type' => 'string',
-			    'description' => 'Page to render',
-			    'source' => array( 'param' => 'name' ),
-			    'optional' => TRUE,
-			    'default' => '<page>'
+			    'description' => 'Model uuid',
+			    'source' => array( 'param' => 'modeluuid' ),
+			    'optional' => FALSE,
+			),
+			array(
+			    'name' => 'revision',
+			    'type' => 'string',
+			    'description' => 'Model revision',
+			    'source' => array( 'param' => 'revision' ),
+			    'optional' => FALSE,
 			),
 		    ),
 		),
@@ -48,10 +54,10 @@ function smartdocs_service_services_resources() {
 			    'default' => '<page>'
 			),
 			array(
-			    'name' => 'field_name',
+			    'name' => 'type',
 			    'optional' => FALSE,
-			    'source' => array('data' => 'field_name'),
-			    'description' => 'The file parameters',
+			    'source' => array('data' => 'type'),
+			    'description' => 'The swagger file type, "yaml" or "json"',
 			    'type' => 'string',
 			),
 		    ),
@@ -66,6 +72,9 @@ function smartdocs_service_permission() {
     return array(
 	'import swagger specification' => array(
 	    'title' => t('Import Swagger specification')
+	    ),
+	'render and publish model' => array(
+	    'title' => t('Render And Publish Model')
 	    )
 	);
 }
